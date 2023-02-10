@@ -1,8 +1,5 @@
 name: testing
-on:
-  push:
-    paths:
-      - client
+on: push
 jobs:
   test:
     runs-on: ubuntu-latest
