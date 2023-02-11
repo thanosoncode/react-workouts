@@ -1,18 +1,34 @@
 name: Deploy
 on: push
 jobs:
-  lint:
+  prepare:
     runs-on: ubuntu-latest
     steps:
       - name: get code
         uses: actions/checkout@v3
       - name: install dependencies
         run: npm ci
-      - name: lint
+  lint:
+    needs: prepare
+    runs-on: ubuntu-latest
+    steps:
+      - name: check linting
         run: npm run lint
-  sayOk:
+  test:
     needs: lint
     runs-on: ubuntu-latest
     steps:
-      - name: all ok
-        run: echo "all ok"
+      - name: run tests
+        run: npm run test
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: build project
+        run: npm run build
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: deployed
+        run: echo "we are live"
