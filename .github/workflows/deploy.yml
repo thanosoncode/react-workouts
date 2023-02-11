@@ -13,6 +13,6 @@ jobs:
   sayOk:
     needs: lint
     runs-on: ubuntu-latest
-      steps:
-        - name: all ok
-          run : echo "all ok"
+    steps:
+      - name: all ok
+        run: echo "all ok"
