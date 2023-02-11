@@ -1,7 +1,7 @@
 name: Deploy
 on: push
 jobs:
-  test:
+  install:
     runs-on: ubuntu-latest
     steps:
       - name: get code
@@ -12,11 +12,9 @@ jobs:
           node-version: 18
       - name: install dependencies
         run: npm ci
-      - name: run lint
-        run: npm lint
-      - name: run tests
-        run: npm test
-      - name: build
-        run: npm build
-      - name: successful deployed
-        run: echo "we are live!"
+  lint: 
+    needs: install
+     - name: run lint
+        run: npm run lint
+     
+   
