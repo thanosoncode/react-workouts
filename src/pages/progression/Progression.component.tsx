@@ -1,29 +1,26 @@
-import { Box, SelectChangeEvent } from "@mui/material";
-import Typography from "@mui/material/Typography";
-import { useQuery } from "@tanstack/react-query";
-import { format } from "date-fns";
-import { useState } from "react";
-import { getWorkouts } from "../../api/workouts";
-import BarChart from "../../components/charts/BarChart";
-import LineChart from "../../components/charts/LineChart";
-import DeleteConfirmationDialog from "../../components/deleteConfirmationDialog/DeleteConfirmationDialog.component";
-import SelectByExercise from "../../components/selectByExercise/SelectByExercise.component";
-import { LONG_CACHE } from "../../utils/constants";
-import { Exercise } from "../../utils/models";
-import { useStyles } from "./Progression.styles";
+import { Box, SelectChangeEvent } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import { useQuery } from '@tanstack/react-query';
+import { format } from 'date-fns';
+import { useState } from 'react';
+
+import { getWorkouts } from '../../api/workouts';
+import BarChart from '../../components/charts/BarChart';
+import LineChart from '../../components/charts/LineChart';
+import SelectByExercise from '../../components/selectByExercise/SelectByExercise.component';
+import { LONG_CACHE } from '../../utils/constants';
+import { Exercise } from '../../utils/models';
+import { useStyles } from './Progression.styles';
 
 const Progression = () => {
   const { classes } = useStyles();
-  const [selectedExercise, setSelectedExercise] = useState(
-    "bulgarian split squats"
-  );
+  const [selectedExercise, setSelectedExercise] = useState('bulgarian split squats');
 
-  const handleSelectChange = (event: SelectChangeEvent) =>
-    setSelectedExercise(event.target.value);
+  const handleSelectChange = (event: SelectChangeEvent) => setSelectedExercise(event.target.value);
 
-  const { data: workouts } = useQuery(["workouts"], getWorkouts, {
+  const { data: workouts } = useQuery(['workouts'], getWorkouts, {
     staleTime: LONG_CACHE,
-    refetchOnWindowFocus: false,
+    refetchOnWindowFocus: false
   });
 
   const getRecordsPerExercise = (name: string) => {
@@ -33,8 +30,8 @@ const Progression = () => {
             ...w,
             exercises: w.exercises.map((ex) => ({
               ...ex,
-              createdAt: w.createdAt,
-            })),
+              createdAt: w.createdAt
+            }))
           }))
           .flatMap((w) => w.exercises)
           .filter((ex) => ex.name === name)
@@ -42,8 +39,7 @@ const Progression = () => {
   };
 
   const allRecordsPerExercise = getRecordsPerExercise(selectedExercise);
-  const calculateVolume = (exercise: Exercise) =>
-    Number(exercise.sets) * Number(exercise.reps) * Number(exercise.weight);
+  const calculateVolume = (exercise: Exercise) => Number(exercise.sets) * Number(exercise.reps) * Number(exercise.weight);
 
   const volumePerExercise = allRecordsPerExercise.map((ex) => {
     return {
@@ -52,27 +48,17 @@ const Progression = () => {
       sets: Number(ex.sets),
       reps: Number(ex.reps),
       weight: Number(ex.weight),
-      createdAt: ex.createdAt
-        ? format(new Date(ex.createdAt).getTime(), "dd/MM")
-        : "",
+      createdAt: ex.createdAt ? format(new Date(ex.createdAt).getTime(), 'dd/MM') : ''
     };
   });
 
   const topWeigtPerExercise = allRecordsPerExercise.map((ex) => ({
     name: ex.name,
     topWeight: Number(ex.weight),
-    createdAt: ex.createdAt
-      ? format(new Date(ex.createdAt).getTime(), "dd/MM")
-      : "",
+    createdAt: ex.createdAt ? format(new Date(ex.createdAt).getTime(), 'dd/MM') : ''
   }));
 
-  const options = Array.from(
-    new Set(
-      (workouts ? workouts.flatMap((w) => w.exercises) : []).map(
-        (ex) => ex.name
-      )
-    )
-  );
+  const options = Array.from(new Set((workouts ? workouts.flatMap((w) => w.exercises) : []).map((ex) => ex.name)));
 
   return (
     <Box className={classes.root}>
@@ -80,12 +66,7 @@ const Progression = () => {
         <Typography variant="h6" className={classes.title}>
           Select exercise
         </Typography>
-        <SelectByExercise
-          value={selectedExercise}
-          onChange={handleSelectChange}
-          options={options}
-          showExercisesCount={true}
-        />
+        <SelectByExercise value={selectedExercise} onChange={handleSelectChange} options={options} showExercisesCount={true} />
       </Box>
       <Box className={classes.graphsContainer}>
         <Box>

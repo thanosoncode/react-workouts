@@ -1,7 +1,8 @@
-import { Box } from "@mui/material";
-import { useStyles } from "./Navbar.styles";
-import { NavLink, useLocation } from "react-router-dom";
-import { CalendarMonth, FitnessCenter, Insights } from "@mui/icons-material";
+import { CalendarMonth, FitnessCenter, Insights } from '@mui/icons-material';
+import { Box } from '@mui/material';
+import { NavLink, useLocation } from 'react-router-dom';
+
+import { useStyles } from './Navbar.styles';
 
 const Navbar = () => {
   const { classes, cx } = useStyles();
@@ -13,9 +14,8 @@ const Navbar = () => {
         to="/"
         className={cx({
           [classes.link]: true,
-          [classes.active]: pathname === "/",
-        })}
-      >
+          [classes.active]: pathname === '/'
+        })}>
         <Box className={classes.linkContainer}>
           <CalendarMonth />
           calendar
@@ -25,9 +25,8 @@ const Navbar = () => {
         to="/my-workouts"
         className={cx({
           [classes.link]: true,
-          [classes.active]: pathname === "/my-workouts",
-        })}
-      >
+          [classes.active]: pathname === '/my-workouts'
+        })}>
         <Box className={classes.linkContainer}>
           <FitnessCenter />
           workouts
@@ -37,9 +36,8 @@ const Navbar = () => {
         to="/progression"
         className={cx({
           [classes.link]: true,
-          [classes.active]: pathname === "/progression",
-        })}
-      >
+          [classes.active]: pathname === '/progression'
+        })}>
         <Box className={classes.linkContainer}>
           <Insights />
           progression

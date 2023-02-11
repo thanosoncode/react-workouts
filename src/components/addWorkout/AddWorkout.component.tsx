@@ -1,12 +1,13 @@
-import { Box, SelectChangeEvent, Typography } from "@mui/material";
-import { useQueryClient, useMutation } from "@tanstack/react-query";
-import { useState } from "react";
-import { postWorkout } from "../../api/workouts";
-import AddExercise from "../addExercise/AddExercise.component";
-import AddLabel from "../addLabel/AddLabel.component";
-import Controls from "../controls/Controls.component";
-import ExercisesList from "../exerciseList/ExercisesList.component";
-import { Exercise } from "../../utils/models";
+import { Box, SelectChangeEvent, Typography } from '@mui/material';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useState } from 'react';
+
+import { postWorkout } from '../../api/workouts';
+import { Exercise } from '../../utils/models';
+import AddExercise from '../addExercise/AddExercise.component';
+import AddLabel from '../addLabel/AddLabel.component';
+import Controls from '../controls/Controls.component';
+import ExercisesList from '../exerciseList/ExercisesList.component';
 
 interface AddWorkoutProps {
   setisAddWorkoutOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -16,7 +17,7 @@ const AddWorkout: React.FC<AddWorkoutProps> = ({ setisAddWorkoutOpen }) => {
   const queryClient = useQueryClient();
   const [exercises, setExercises] = useState<Exercise[]>([]);
   const [doneWithExercises, setDoneWithExercises] = useState(false);
-  const [label, setLabel] = useState("");
+  const [label, setLabel] = useState('');
   const [labelAdded, setLabelAdded] = useState(false);
   const workoutIsReady = labelAdded && exercises.length > 0;
 
@@ -26,20 +27,16 @@ const AddWorkout: React.FC<AddWorkoutProps> = ({ setisAddWorkoutOpen }) => {
     setLabel(event.target.value);
   };
 
-  const { mutate, isLoading: isSavingWorkout } = useMutation(
-    ["post-workout"],
-    () => postWorkout({ label, exercises }),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ["workouts"] });
-        setisAddWorkoutOpen(false);
-      },
+  const { mutate, isLoading: isSavingWorkout } = useMutation(['post-workout'], () => postWorkout({ label, exercises }), {
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['workouts'] });
+      setisAddWorkoutOpen(false);
     }
-  );
+  });
 
   const handleGoBack = () => {
     if (label) {
-      setLabel("");
+      setLabel('');
       setLabelAdded(false);
       return;
     }
@@ -47,9 +44,7 @@ const AddWorkout: React.FC<AddWorkoutProps> = ({ setisAddWorkoutOpen }) => {
   };
 
   return (
-    <Box
-      sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <Typography variant="h6" sx={{ marginTop: 2 }}>
         Add workout
       </Typography>
@@ -60,13 +55,7 @@ const AddWorkout: React.FC<AddWorkoutProps> = ({ setisAddWorkoutOpen }) => {
         </Typography>
       ) : null}
       {doneWithExercises ? (
-        <AddLabel
-          label={label}
-          labelAdded={labelAdded}
-          onChange={handleChange}
-          onAdd={handleLabelAdded}
-          onGoBack={handleGoBack}
-        />
+        <AddLabel label={label} labelAdded={labelAdded} onChange={handleChange} onAdd={handleLabelAdded} onGoBack={handleGoBack} />
       ) : (
         <AddExercise exercises={exercises} setExercises={setExercises} />
       )}

@@ -1,20 +1,18 @@
-import { ExpandMore, NavigateBefore, NavigateNext } from "@mui/icons-material";
-import { Box, IconButton, Paper } from "@mui/material";
-import { useState } from "react";
-import { Workout } from "../../utils/models";
-import { useStyles } from "./Calendar.styles";
-import DaysView from "./daysView/DaysView.component";
-import YearsView from "./yearsView/YearsView.component";
+import { ExpandMore, NavigateBefore, NavigateNext } from '@mui/icons-material';
+import { Box, IconButton, Paper } from '@mui/material';
+import { useState } from 'react';
+
+import { Workout } from '../../utils/models';
+import { useStyles } from './Calendar.styles';
+import DaysView from './daysView/DaysView.component';
+import YearsView from './yearsView/YearsView.component';
 
 interface CalendarProps {
   workouts: Workout[] | undefined;
   setSelectedWorkoutId: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Calendar: React.FC<CalendarProps> = ({
-  setSelectedWorkoutId,
-  workouts,
-}) => {
+const Calendar: React.FC<CalendarProps> = ({ setSelectedWorkoutId, workouts }) => {
   const { classes } = useStyles();
   const [month, setMonth] = useState<number>(new Date().getMonth() + 1);
   const [year, setYear] = useState(new Date().getFullYear());
@@ -23,29 +21,29 @@ const Calendar: React.FC<CalendarProps> = ({
   const getMonthName = (month: number) => {
     switch (month) {
       case 1:
-        return "January";
+        return 'January';
       case 2:
-        return "February";
+        return 'February';
       case 3:
-        return "March";
+        return 'March';
       case 4:
-        return "April";
+        return 'April';
       case 5:
-        return "May";
+        return 'May';
       case 6:
-        return "June";
+        return 'June';
       case 7:
-        return "July";
+        return 'July';
       case 8:
-        return "August";
+        return 'August';
       case 9:
-        return "September";
+        return 'September';
       case 10:
-        return "October";
+        return 'October';
       case 11:
-        return "November";
+        return 'November';
       case 12:
-        return "December";
+        return 'December';
 
       default:
         break;
@@ -79,15 +77,12 @@ const Calendar: React.FC<CalendarProps> = ({
     <Paper className={classes.container}>
       <Box className={classes.header}>
         <Box sx={{ fontWeight: 800 }}>
-          {getMonthName(month)} {year}{" "}
-          <IconButton
-            onClick={toggleYearOptions}
-            className={isYearsOpen ? classes.expandYearsButton : ""}
-          >
+          {getMonthName(month)} {year}{' '}
+          <IconButton onClick={toggleYearOptions} className={isYearsOpen ? classes.expandYearsButton : ''}>
             <ExpandMore />
           </IconButton>
         </Box>
-        <Box className={isYearsOpen ? classes.previousNext : ""}>
+        <Box className={isYearsOpen ? classes.previousNext : ''}>
           <IconButton onClick={handlePreviousMonthClick}>
             <NavigateBefore />
           </IconButton>
@@ -99,12 +94,7 @@ const Calendar: React.FC<CalendarProps> = ({
       {isYearsOpen ? (
         <YearsView year={year} handleYearClick={handleYearClick} />
       ) : (
-        <DaysView
-          month={month}
-          year={year}
-          workouts={workouts}
-          setSelectedWorkoutId={setSelectedWorkoutId}
-        />
+        <DaysView month={month} year={year} workouts={workouts} setSelectedWorkoutId={setSelectedWorkoutId} />
       )}
     </Paper>
   );

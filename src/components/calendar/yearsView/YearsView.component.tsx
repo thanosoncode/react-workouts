@@ -1,5 +1,6 @@
-import Box from "@mui/material/Box";
-import { useStyles } from "./YearsView.styles";
+import Box from '@mui/material/Box';
+
+import { useStyles } from './YearsView.styles';
 
 interface YearsViewProps {
   year: number;
@@ -27,9 +28,8 @@ const YearsView: React.FC<YearsViewProps> = ({ year, handleYearClick }) => {
             onClick={() => handleYearClick(y + 1)}
             className={cx({
               [classes.year]: !isCurrentYear,
-              [classes.isCurrentYear]: isCurrentYear,
-            })}
-          >
+              [classes.isCurrentYear]: isCurrentYear
+            })}>
             {y}
           </span>
         );

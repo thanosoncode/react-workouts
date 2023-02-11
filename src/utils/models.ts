@@ -21,3 +21,18 @@ export type ExerciseWithVolumeAndDate = {
   weight: string;
   createdAt: string;
 };
+
+export type VolumePerExercise = {
+  name: string;
+  volume: number;
+  sets: number;
+  reps: number;
+  weight: number;
+  createdAt: string;
+};
+
+export type TopWeigtPerExercise = {
+  name: string;
+  topWeight: number;
+  createdAt: string;
+};

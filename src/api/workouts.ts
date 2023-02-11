@@ -1,14 +1,14 @@
-import axios from "./axios";
-import { Workout } from "../utils/models";
+import { Workout } from '../utils/models';
+import axios from './axios';
 
 export const getWorkouts = async (): Promise<Workout[] | undefined> => {
-  const response = await axios.get("/workouts");
+  const response = await axios.get('/workouts');
   const data = await response.data;
   return data;
 };
 
 export const postWorkout = async (workout: Workout) => {
-  const response = await axios.post("/workouts", workout);
+  const response = await axios.post('/workouts', workout);
   const data = await response.data;
   return data;
 };

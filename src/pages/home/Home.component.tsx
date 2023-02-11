@@ -1,52 +1,35 @@
-import { Box, CircularProgress } from "@mui/material";
-import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
-import { getSingleWorkout, getWorkouts } from "../../api/workouts";
-import Calendar from "../../components/calendar/Calendar.component";
-import PieChart from "../../components/charts/PieChart";
-import ExercisesList from "../../components/exerciseList/ExercisesList.component";
-import { LONG_CACHE } from "../../utils/constants";
-import { useStyles } from "./Home.styles";
+import { Box, CircularProgress } from '@mui/material';
+import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
+
+import { getSingleWorkout, getWorkouts } from '../../api/workouts';
+import Calendar from '../../components/calendar/Calendar.component';
+import PieChart from '../../components/charts/PieChart';
+import ExercisesList from '../../components/exerciseList/ExercisesList.component';
+import { LONG_CACHE } from '../../utils/constants';
+import { useStyles } from './Home.styles';
 
 const Home = () => {
   const { classes } = useStyles();
-  const [selectedWorkoutId, setSelectedWorkoutId] = useState<string>("");
+  const [selectedWorkoutId, setSelectedWorkoutId] = useState<string>('');
 
-  const { data: workouts, isLoading: isWorkoutsLoading } = useQuery(
-    ["workouts"],
-    getWorkouts,
-    {
-      refetchOnWindowFocus: false,
-      staleTime: LONG_CACHE,
-    }
-  );
+  const { data: workouts, isLoading: isWorkoutsLoading } = useQuery(['workouts'], getWorkouts, {
+    refetchOnWindowFocus: false,
+    staleTime: LONG_CACHE
+  });
 
-  const { data: workout, isLoading: isSingleWorkoutLoading } = useQuery(
-    ["single-workout", selectedWorkoutId],
-    () => getSingleWorkout(selectedWorkoutId)
-  );
+  const { data: workout, isLoading: isSingleWorkoutLoading } = useQuery(['single-workout', selectedWorkoutId], () => getSingleWorkout(selectedWorkoutId));
 
   return (
     <Box className={classes.root}>
       <Box className={classes.container}>
-        {isWorkoutsLoading ? (
-          <CircularProgress />
-        ) : (
-          <Calendar
-            setSelectedWorkoutId={setSelectedWorkoutId}
-            workouts={workouts}
-          />
-        )}
+        {isWorkoutsLoading ? <CircularProgress /> : <Calendar setSelectedWorkoutId={setSelectedWorkoutId} workouts={workouts} />}
         {isSingleWorkoutLoading ? (
           <CircularProgress />
         ) : (
           <Box className={classes.details}>
             <Box className={classes.exercisesListContainer}>
-              <ExercisesList
-                exercises={workout?.exercises ?? []}
-                workout={workout}
-                showTitle={true}
-              />
+              <ExercisesList exercises={workout?.exercises ?? []} workout={workout} showTitle={true} />
             </Box>
             <PieChart data={workout?.exercises ?? []} />
           </Box>
