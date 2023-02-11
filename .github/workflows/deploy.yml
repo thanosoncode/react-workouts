@@ -14,7 +14,9 @@ jobs:
         run: npm ci
   lint: 
     needs: install
-     - name: run lint
+      runs-on: ubuntu-latest
+      steps:
+        - name: run lint
         run: npm run lint
      
    
