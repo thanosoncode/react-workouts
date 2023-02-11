@@ -10,3 +10,9 @@ jobs:
         run: npm ci
       - name: lint
         run: npm run lint
+  sayOk:
+    needs: lint
+    runs-on: ubuntu-latest
+      steps:
+        - name: all ok
+          run : echo "all ok"
