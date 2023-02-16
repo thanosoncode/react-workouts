@@ -35,6 +35,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: dist-files
-          run: ls
+      - name: output artifacts
+        run: ls
       - name: deployed
         run: echo "we are live"
