@@ -11,10 +11,13 @@ import SelectByExercise from '../../components/selectByExercise/SelectByExercise
 import { LONG_CACHE } from '../../utils/constants';
 import { Exercise } from '../../utils/models';
 import { useStyles } from './Progression.styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import theme from '../../theme';
 
 const Progression = () => {
   const { classes } = useStyles();
   const [selectedExercise, setSelectedExercise] = useState('bulgarian split squats');
+  const showTitle = useMediaQuery(theme.breakpoints.up('sm'));
 
   const handleSelectChange = (event: SelectChangeEvent) => setSelectedExercise(event.target.value);
 
@@ -41,31 +44,37 @@ const Progression = () => {
   const allRecordsPerExercise = getRecordsPerExercise(selectedExercise);
   const calculateVolume = (exercise: Exercise) => Number(exercise.sets) * Number(exercise.reps) * Number(exercise.weight);
 
-  const volumePerExercise = allRecordsPerExercise.map((ex) => {
-    return {
-      name: ex.name,
-      volume: calculateVolume(ex),
-      sets: Number(ex.sets),
-      reps: Number(ex.reps),
-      weight: Number(ex.weight),
-      createdAt: ex.createdAt ? format(new Date(ex.createdAt).getTime(), 'dd/MM') : ''
-    };
-  });
+  const volumePerExercise = allRecordsPerExercise
+    .map((ex) => {
+      return {
+        name: ex.name,
+        volume: calculateVolume(ex),
+        sets: Number(ex.sets),
+        reps: Number(ex.reps),
+        weight: Number(ex.weight),
+        createdAt: ex.createdAt ? format(new Date(ex.createdAt).getTime(), 'dd/MM') : ''
+      };
+    })
+    .slice(-8);
 
-  const topWeigtPerExercise = allRecordsPerExercise.map((ex) => ({
-    name: ex.name,
-    topWeight: Number(ex.weight),
-    createdAt: ex.createdAt ? format(new Date(ex.createdAt).getTime(), 'dd/MM') : ''
-  }));
+  const topWeigtPerExercise = allRecordsPerExercise
+    .map((ex) => ({
+      name: ex.name,
+      topWeight: Number(ex.weight),
+      createdAt: ex.createdAt ? format(new Date(ex.createdAt).getTime(), 'dd/MM') : ''
+    }))
+    .slice(-8);
 
   const options = Array.from(new Set((workouts ? workouts.flatMap((w) => w.exercises) : []).map((ex) => ex.name)));
 
   return (
     <Box className={classes.root}>
       <Box className={classes.titleContainer}>
-        <Typography variant="h6" className={classes.title}>
-          Select exercise
-        </Typography>
+        {showTitle && (
+          <Typography variant="h6" className={classes.title}>
+            Select exercise
+          </Typography>
+        )}
         <SelectByExercise value={selectedExercise} onChange={handleSelectChange} options={options} showExercisesCount={true} />
       </Box>
       <Box className={classes.graphsContainer}>

@@ -5,7 +5,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 
 import Error from './components/error/Error.component';
-import RootLayout from './components/RootLayout';
+import RootLayout from './components/rootLayout/RootLayout.component';
 import Home from './pages/home/Home.component';
 import Progression from './pages/progression/Progression.component';
 import Workouts from './pages/workouts/Workouts.component';

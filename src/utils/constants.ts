@@ -1,6 +1,6 @@
 export const LONG_CACHE = 3600000;
 
-export const workoutLabels = ['push', 'pull', 'upper mix', 'legs', 'legs push', 'legs puss', 'shoulders', 'calisthenics', 'other'];
+export const workoutLabels = ['push', 'pull', 'upper mix', 'legs', 'legs push', 'legs puss', 'shoulders', 'calisthenics'];
 
 export const possibleExercises = [
   'overhead shoulder press',

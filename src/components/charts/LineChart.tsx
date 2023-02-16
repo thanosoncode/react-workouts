@@ -16,8 +16,8 @@ const LineChart: React.FC<BarChartsProps> = ({ data }) => {
       <Line type="monotone" dataKey="topWeight" fill={theme.palette.primary.main} />
       <Tooltip content={<LineChartTooltip />} payload={data} cursor={{ fill: 'none' }} />
       <Legend content={<CustomLegend />} />
-      <YAxis dataKey="topWeight" />
-      <XAxis dataKey="createdAt" />
+      <YAxis dataKey="topWeight" tick={{ fontSize: 12 }} />
+      <XAxis dataKey="createdAt" tick={{ fontSize: 12 }} />
     </ReChartsLineChart>
   );
 };

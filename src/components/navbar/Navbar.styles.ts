@@ -19,7 +19,7 @@ export const useStyles = makeStyles()((theme: Theme) => ({
   link: {
     textDecoration: 'none',
     color: theme.palette.text.primary,
-    borderBottom: `1px solid transparent`,
+    borderBottom: `2px solid transparent`,
     padding: theme.spacing(0, 1, 1, 1),
     height: 'min-content'
   },

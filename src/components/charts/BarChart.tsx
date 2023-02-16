@@ -15,8 +15,8 @@ const BarChart: React.FC<BarChartsProps> = ({ data }) => {
       <Bar dataKey="volume" fill={theme.palette.primary.main} barSize={20}></Bar>
       <Tooltip content={<BarTooltip />} payload={data} cursor={{ fill: 'none' }} />
       <Legend content={<CustomLegend />} />
-      <YAxis dataKey="volume" />
-      <XAxis dataKey="createdAt" />
+      <YAxis dataKey="volume" tick={{ fontSize: 12 }} />
+      <XAxis dataKey="createdAt" tick={{ fontSize: 12 }} />
     </ReChartsBarChart>
   );
 };

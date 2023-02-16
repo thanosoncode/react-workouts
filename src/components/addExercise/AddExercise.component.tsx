@@ -84,7 +84,16 @@ const AddExercise: React.FC<AddExerciseProps> = (props) => {
             ))}
           </Select>
         </FormControl>
-        <TextField id="weight" name="weight" label="weight" variant="outlined" type="number" value={exercise.weight} onChange={handleInputChange} />
+        <TextField
+          id="weight"
+          name="weight"
+          label="weight"
+          variant="outlined"
+          type="number"
+          value={exercise.weight}
+          onChange={handleInputChange}
+          inputProps={{ min: 0 }}
+        />
         <Button variant="outlined" onClick={handleAddExercise}>
           add
         </Button>

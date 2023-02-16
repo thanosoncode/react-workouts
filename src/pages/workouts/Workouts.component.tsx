@@ -1,3 +1,4 @@
+import { Add } from '@mui/icons-material';
 import DeleteForever from '@mui/icons-material/DeleteForever';
 import { Box, Button, IconButton, SelectChangeEvent, Typography } from '@mui/material';
 import Backdrop from '@mui/material/Backdrop';
@@ -52,7 +53,7 @@ const Workouts = () => {
             <FIlterBy filtersOpen={filtersOpen} selectedLabel={selectedLabel} handleFilterByOpen={handleFilterByOpen} handleLabelChange={handleLabelChange} />
             {!isAddWorkoutOpen && (
               <Button variant="contained" onClick={handleIsAddWorkoutOpen} className={classes.newWorkoutButton}>
-                New Workout
+                <Add />
               </Button>
             )}
           </Box>
