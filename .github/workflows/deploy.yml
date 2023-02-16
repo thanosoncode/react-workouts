@@ -26,12 +26,15 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: dist-files
-          path: |
-            dist
-            package.json
+          path: dist
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: dist-files
+          run: ls
       - name: deployed
         run: echo "we are live"
