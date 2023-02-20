@@ -4,6 +4,5 @@ import EnvironmentPlugin from 'vite-plugin-environment';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), EnvironmentPlugin('all')],
-  base: '/react-workouts/'
+  plugins: [react(), EnvironmentPlugin('all')]
 });
