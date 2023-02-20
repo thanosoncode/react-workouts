@@ -1,4 +1,4 @@
-import { Box, CircularProgress } from '@mui/material';
+import { Box, CircularProgress, Typography } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 
@@ -24,6 +24,7 @@ const Home = () => {
     <Box className={classes.root}>
       <Box className={classes.container}>
         {isWorkoutsLoading ? <CircularProgress /> : <Calendar setSelectedWorkoutId={setSelectedWorkoutId} workouts={workouts} />}
+        {workouts && !selectedWorkoutId ? <Typography>Pick a date for more info.</Typography> : null}
         {isSingleWorkoutLoading ? (
           <CircularProgress />
         ) : (

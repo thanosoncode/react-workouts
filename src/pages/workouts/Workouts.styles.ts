@@ -18,7 +18,7 @@ export const useStyles = makeStyles()(() => ({
   },
   workoutsContainer: {
     display: 'flex',
-    gap: '32px',
+    gap: '48px',
     justifyContent: 'center',
     alignItems: 'flex-start',
     flexWrap: 'wrap'
@@ -32,8 +32,7 @@ export const useStyles = makeStyles()(() => ({
     marginBottom: '4px'
   },
   workoutLabel: {
-    textTransform: 'capitalize',
-    marginRight: '40px'
+    textTransform: 'capitalize'
   },
   exercisesListContainer: {
     display: 'flex',

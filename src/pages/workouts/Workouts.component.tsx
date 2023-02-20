@@ -9,6 +9,7 @@ import { useState } from 'react';
 
 import { deleteWorkout, getWorkouts } from '../../api/workouts';
 import AddWorkout from '../../components/addWorkout/AddWorkout.component';
+import ConfirmationDialog from '../../components/confirmationDialog/ConfirmationDialog.component';
 import ExercisesList from '../../components/exerciseList/ExercisesList.component';
 import FIlterBy from '../../components/filterBy/FIlterBy.component';
 import theme from '../../theme';
@@ -22,6 +23,8 @@ const Workouts = () => {
   const [selectedLabel, setSelectedLabel] = useState('');
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [isAddWorkoutOpen, setisAddWorkoutOpen] = useState(false);
+  const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] = useState(false);
+  const [workoutToDelete, setWorkoutToDelete] = useState('');
 
   const handleLabelChange = (event: SelectChangeEvent<string>) => setSelectedLabel(event.target.value);
 
@@ -41,12 +44,27 @@ const Workouts = () => {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['workouts'] })
   });
 
+  const handleDelete = (id: string | undefined) => {
+    if (id) {
+      setWorkoutToDelete(id);
+      setIsConfirmationDialogOpen(true);
+    }
+  };
+
+  const handleDeleteAction = (confirm: boolean) => {
+    console.log('handleDeleteAction');
+    if (confirm && workoutToDelete) {
+      deleteSelectedWorkout(workoutToDelete);
+      setIsConfirmationDialogOpen(false);
+    }
+    setIsConfirmationDialogOpen(false);
+  };
+
   const filteredWorkouts = selectedLabel ? workouts && workouts.filter((w) => w.label === selectedLabel) : workouts;
 
   return (
     <Box>
       {isAddWorkoutOpen && <AddWorkout setisAddWorkoutOpen={setisAddWorkoutOpen} />}
-
       {!isAddWorkoutOpen && (
         <>
           <Box className={classes.titleContainer}>
@@ -65,13 +83,14 @@ const Workouts = () => {
                   return (
                     <Box key={id} className={classes.workout}>
                       <Box className={classes.workoutTitle}>
-                        <Typography variant="subtitle2" sx={{ paddingLeft: theme.spacing(1) }}>
-                          {workout?.createdAt ? format(new Date(workout?.createdAt).getTime(), 'dd/MM/yyyy') : ''}{' '}
-                        </Typography>
-                        <Typography variant="h6" className={classes.workoutLabel}>
-                          {label}
-                        </Typography>
-                        <IconButton onClick={() => (id ? deleteSelectedWorkout(id) : null)} sx={{ padding: 0 }}>
+                        <Box>
+                          <Typography variant="h6" className={classes.workoutLabel}>
+                            {label}
+                          </Typography>
+                          <Typography variant="subtitle2">{workout?.createdAt ? format(new Date(workout?.createdAt).getTime(), 'dd/MM/yyyy') : ''} </Typography>
+                        </Box>
+
+                        <IconButton onClick={() => handleDelete(id)} sx={{ padding: 0 }}>
                           <DeleteForever sx={{ fontSize: 16 }} />
                         </IconButton>
                       </Box>
@@ -89,6 +108,7 @@ const Workouts = () => {
       <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={isDeleting}>
         <CircularProgress color="inherit" />
       </Backdrop>
+      <ConfirmationDialog open={isConfirmationDialogOpen} onAction={handleDeleteAction} />
     </Box>
   );
 };
