@@ -1,5 +1,7 @@
 name: Deploy
 on: push
+  branches:
+    - master
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -44,7 +46,7 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/master'
     steps:
       - name: download artifacts
         uses: actions/download-artifact@v3
