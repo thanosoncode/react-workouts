@@ -12,7 +12,8 @@ npm install
 npm run dev
 ```
 
-
+###
+Stack
 React<br/>
 Typescript<br/>
 React Query<br/>
