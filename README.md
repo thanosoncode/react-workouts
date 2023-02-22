@@ -3,8 +3,8 @@
 </div>
 
 <h5>Quick Start</h5>
-npm install<br/>
-npm run dev
+```npm install
+npm run dev```
 
 <h5>Key Concepts</h5>
 <ul>
