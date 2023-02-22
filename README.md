@@ -1,14 +1,15 @@
-# training-logs
+## training-logs
 
 Track your progress, reach your goals!
 
-## Quick Start
-npm install
-npm run dev
+### Quick Start
+<br/>
+npm install<br/>
+npm run dev<br/>
 
-React
-Typescript
-Axios for http requests
-Material UI with TSS for styling
-React-query for api caching
-Recharts for charts
+React<br/>
+Typescript<br/>
+Axios for http requests<br/>
+Material UI with TSS for styling<br/>
+React-query for api caching<br/>
+Recharts for charts<br/>
