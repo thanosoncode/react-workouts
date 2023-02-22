@@ -2,8 +2,8 @@
 <p>Log your trainings keep track of your progress and get insights</p>
 </div>
 
-[Live Version](https://training-logs.netlify.app/)
-[Api used is for this project](https://github.com/thanosoncode/express-prisma-mongodb-react/tree/master/server)
+[Live Version](https://training-logs.netlify.app/) <br/>
+[Api consumed is another project of mine](https://github.com/thanosoncode/express-prisma-mongodb-react/tree/master/server)
 
 ###Setup
 ```sh
