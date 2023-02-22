@@ -1,4 +1,6 @@
-<p align="center">Log your trainings and keep track of your progress</p>
+<div align="center"><h2>Training Logs</h2>
+<p>Log your trainings and keep track of your progress</p>
+</div>
 
 ### Quick Start
 npm install<br/>
