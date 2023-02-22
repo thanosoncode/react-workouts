@@ -2,8 +2,7 @@
 <p>Log your trainings keep track of your progress and get insights</p>
 </div>
 
-<h3>Quick Start</h3>
- `npm install`
+
 `npm install`<br/>
 `npm run dev`<br/><br/>
 
