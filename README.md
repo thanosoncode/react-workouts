@@ -3,8 +3,8 @@
 </div>
 
 <h3>Quick Start</h3>
-npm install<br/>
-npm run dev<br/><br/>
+`npm install`<br/>
+`npm run dev`<br/><br/>
 
 
 React<br/>
