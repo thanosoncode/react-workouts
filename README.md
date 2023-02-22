@@ -4,9 +4,9 @@
 
 <h3>Quick Start</h3>
 npm install<br/>
-npm run dev
+npm run dev<br/><br/>
 
-<br/>
+
 React<br/>
 Typescript<br/>
 React Query<br/>
