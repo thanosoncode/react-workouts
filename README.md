@@ -13,7 +13,7 @@ npm run dev
 ```
 
 ##
-Stack
+
 
 
 React<br/>
