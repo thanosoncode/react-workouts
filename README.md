@@ -6,7 +6,7 @@
 npm install<br/>
 npm run dev
 
-<h3>Key Concepts</h3>
+<br/>
 React<br/>
 Typescript<br/>
 React Query<br/>
