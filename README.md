@@ -2,14 +2,16 @@
 <p>Log your trainings keep track of your progress and get insights</p>
 </div>
 
-### Quick Start
+<h5>Quick Start</h5>
 npm install<br/>
 npm run dev
 
-### Stack
-React<br/>
-Typescript<br/>
-Axioss<br/>
-Material UI with TSS for styling<br/>
-React-query for api caching<br/>
-Recharts for charts<br/>
+<h5>Key Concepts</h5>
+<ul>
+  <li>React</li>
+   <li>Typescript</li> 
+  <li>React Query</li>
+   <li>Material UI</li>
+   <li>Recharts</li>
+</ul>  
+
