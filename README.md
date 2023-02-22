@@ -2,16 +2,14 @@
 <p>Log your trainings keep track of your progress and get insights</p>
 </div>
 
-<h5>Quick Start</h5>
-```npm install
-npm run dev```
+<h3>Quick Start</h3>
+npm install<br/>
+npm run dev
 
-<h5>Key Concepts</h5>
-<ul>
-  <li>React</li>
-   <li>Typescript</li> 
-  <li>React Query</li>
-   <li>Material UI</li>
-   <li>Recharts</li>
-</ul>  
+<h3>Key Concepts</h3>
+React<br/>
+Typescript<br/>
+React Query<br/>
+Material UI<br/>
+Recharts<br/>
 
