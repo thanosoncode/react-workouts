@@ -1,6 +1,4 @@
-## training-logs
-
-Track your progress, reach your goals!
+## Log your trainings and keep track of your progress
 
 ### Quick Start
 npm install<br/>
