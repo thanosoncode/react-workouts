@@ -3,9 +3,9 @@
 Track your progress, reach your goals!
 
 ### Quick Start
-<br/>
+
 npm install<br/>
-npm run dev<br/>
+npm run dev
 
 React<br/>
 Typescript<br/>
