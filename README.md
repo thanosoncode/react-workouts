@@ -1,5 +1,5 @@
 <div align="center"><h2>Training Logs</h2>
-<p>Log your trainings and keep track of your progress</p>
+<p>Log your trainings keep track of your progress and get insights</p>
 </div>
 
 ### Quick Start
