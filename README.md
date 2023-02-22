@@ -13,7 +13,8 @@ npm run dev
 ```
 
 ###
-Stack<br/>
+Stack
+<br/>
 React<br/>
 Typescript<br/>
 React Query<br/>
