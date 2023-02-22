@@ -3,9 +3,6 @@
 </div>
 
 
-`npm install`<br/>
-`npm run dev`<br/><br/>
-
 ```sh
 npm install
 npm run dev
